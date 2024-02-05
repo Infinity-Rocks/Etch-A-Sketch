@@ -11,9 +11,9 @@ gridBtn.textContent = "Change Grid Size";
 gridBtn.style.display = "flex";
 gridBtn.style.alignContent = "center";
 gridBtn.style.backgroundColor = "dodgerblue";
-gridBtn.style.fontSize = "24px";
+gridBtn.style.fontSize = "22px";
 gridBtn.style.border = "2px solid white";
-gridBtn.style.borderRadius = "7px";
+gridBtn.style.borderRadius = "12px";
 gridBtn.style.color = "white";
 
 header.classList.add("header");
