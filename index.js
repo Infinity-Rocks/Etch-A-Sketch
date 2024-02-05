@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = createGrid(defaultSize);
     document.body.appendChild(header);
     document.body.appendChild(container);
+
+    let inputs = document.querySelectorAll('.squares');
+    for (let k = 0; k < inputs.length; k++) {
+        inputs[k].onmouseover = rainbowColor;
+    }
 });
 
 function createGrid(defaultSize) {
@@ -96,4 +101,13 @@ function getStyleRule(selector) {
             }
         }
     }
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function rainbowColor(e) {
+    const rndCol = 'rgb(' + getRandomInt(255) + ',' + getRandomInt(255) + ',' + getRandomInt(255) + ')';
+    e.target.style.backgroundColor = rndCol;
 }
