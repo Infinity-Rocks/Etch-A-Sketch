@@ -5,7 +5,17 @@ const gridBtn = document.createElement("button");
 let defaultSize = 16;
 
 title.textContent = "This is an Etch-A-Sketch game"
+title.style.fontFamily = "Verdana";
+
 gridBtn.textContent = "Change Grid Size";
+gridBtn.style.display = "flex";
+gridBtn.style.alignContent = "center";
+gridBtn.style.backgroundColor = "dodgerblue";
+gridBtn.style.fontSize = "24px";
+gridBtn.style.border = "2px solid white";
+gridBtn.style.borderRadius = "7px";
+gridBtn.style.color = "white";
+
 header.classList.add("header");
 gridBtn.classList.add("grid-button");
 
