@@ -64,7 +64,7 @@ function updateGrid(newSize) {
     document.body.appendChild(newContainer);
 }
 
-function getStyleRuleValue(selector, style) {
+function findStyleRule(selector, callback) {
     var selector_compare = selector.toLowerCase();
     var selector_compare2 = selector_compare.substr(0, 1) === '.' ? selector_compare.substr(1) : '.' + selector_compare;
 
@@ -77,27 +77,24 @@ function getStyleRuleValue(selector, style) {
                 var check = myrules[j].selectorText.toLowerCase();
                 switch (check) {
                     case selector_compare:
-                    case selector_compare2: return myrules[j].style[style];
+                    case selector_compare2:
+                        return callback(myrules[j]);
                 }
             }
         }
     }
 }
 
-function getStyleRule(selector) {
-    for (var i = 0; i < document.styleSheets.length; i++) {
-        var mysheet = document.styleSheets[i];
-        var myrules = mysheet.cssRules ? mysheet.cssRules : mysheet.rules;
+function getStyleRuleValue(selector, style) {
+    return findStyleRule(selector, function (rule) {
+        return rule.style[style];
+    });
+}
 
-        for (var j = 0; j < myrules.length; j++) {
-            if (myrules[j].selectorText) {
-                var check = myrules[j].selectorText.toLowerCase();
-                switch (check) {
-                    case selector: return myrules[j];
-                }
-            }
-        }
-    }
+function getStyleRule(selector) {
+    return findStyleRule(selector, function (rule) {
+        return rule;
+    });
 }
 
 function getRandomInt(max) {
