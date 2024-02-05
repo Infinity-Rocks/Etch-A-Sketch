@@ -17,6 +17,7 @@ gridBtn.addEventListener("click", () => {
 
     if (!isNaN(defaultSize) && defaultSize > 0 && defaultSize <= 64) {
         updateGrid(defaultSize);
+        changeColor();
     } else {
         alert("Please enter a valid positive number for the grid size.");
     }
@@ -27,11 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = createGrid(defaultSize);
     document.body.appendChild(header);
     document.body.appendChild(container);
-
-    let inputs = document.querySelectorAll('.squares');
-    for (let k = 0; k < inputs.length; k++) {
-        inputs[k].onmouseover = rainbowColor;
-    }
+    changeColor();
 });
 
 function createGrid(defaultSize) {
@@ -110,4 +107,11 @@ function getRandomInt(max) {
 function rainbowColor(e) {
     const rndCol = 'rgb(' + getRandomInt(255) + ',' + getRandomInt(255) + ',' + getRandomInt(255) + ')';
     e.target.style.backgroundColor = rndCol;
+}
+
+function changeColor() {
+    let inputs = document.querySelectorAll('.squares');
+    for (let k = 0; k < inputs.length; k++) {
+        inputs[k].onmouseover = rainbowColor;
+    }
 }
