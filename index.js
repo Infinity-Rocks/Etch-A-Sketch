@@ -3,8 +3,11 @@ const title = document.createElement("h1");
 const gridBtn = document.createElement("button");
 const middle = document.createElement("div");
 const btnGrp = document.createElement("div");
+const toggleBtn = document.createElement("button");
+const rainbowBtn = document.createElement("button");
 const resetBtn = document.createElement("button");
 
+let color = "";
 let defaultSize = 16;
 
 title.textContent = "This is an Etch-A-Sketch game"
@@ -17,15 +20,21 @@ gridBtn.textContent = "Change Grid Size";
 // gridBtn.style.borderRadius = "12px";
 // gridBtn.style.color = "white";
 
-resetBtn.textContent = "Reset Grid"
+toggleBtn.textContent = "Toggle Color";
+rainbowBtn.textContent = "Toggle Rainbow";
+resetBtn.textContent = "Reset Grid";
 
 header.classList.add("header");
 gridBtn.classList.add("grid-button");
+toggleBtn.classList.add("toggle-button");
+rainbowBtn.classList.add("rainbow-button");
 resetBtn.classList.add("reset-button");
 middle.classList.add("middle");
 btnGrp.classList.add("button-group");
 
 btnGrp.appendChild(gridBtn);
+btnGrp.appendChild(toggleBtn);
+btnGrp.appendChild(rainbowBtn);
 btnGrp.appendChild(resetBtn);
 header.appendChild(title);
 // header.appendChild(gridBtn);
@@ -39,6 +48,15 @@ gridBtn.addEventListener("click", () => {
     } else {
         alert("Please enter a valid positive number for the grid size.");
     }
+});
+
+toggleBtn.addEventListener("click", () => {
+    color = prompt("Enter name/hex code of color: ");
+    changeColor(color);
+});
+
+rainbowBtn.addEventListener("click", () => {
+    changeColor();
 });
 
 resetBtn.addEventListener("click", () => {
@@ -136,9 +154,21 @@ function rainbowColor(e) {
     e.target.style.backgroundColor = rndCol;
 }
 
-function changeColor() {
+function solidColor(e) {
+    if (color !== null) {
+        e.target.style.backgroundColor = color;
+    }
+}
+
+function changeColor(customColor) {
     let inputs = document.querySelectorAll('.squares');
     for (let k = 0; k < inputs.length; k++) {
-        inputs[k].onmouseover = rainbowColor;
+        if (customColor == null) {
+            inputs[k].onmouseover = rainbowColor;
+        }
+        else {
+            console.log("yes");
+            inputs[k].onmouseover = solidColor;
+        }
     }
 }
