@@ -1,7 +1,9 @@
 const header = document.createElement("div");
 const title = document.createElement("h1");
 const gridBtn = document.createElement("button");
-const footer = document.createElement("footer");
+const middle = document.createElement("div");
+const btnGrp = document.createElement("div");
+const resetBtn = document.createElement("button");
 
 let defaultSize = 16;
 
@@ -9,20 +11,24 @@ title.textContent = "This is an Etch-A-Sketch game"
 title.style.fontFamily = "Verdana";
 
 gridBtn.textContent = "Change Grid Size";
-gridBtn.style.display = "flex";
-gridBtn.style.alignContent = "center";
-gridBtn.style.backgroundColor = "dodgerblue";
-gridBtn.style.fontSize = "22px";
-gridBtn.style.border = "2px solid white";
-gridBtn.style.borderRadius = "12px";
-gridBtn.style.color = "white";
+// gridBtn.style.backgroundColor = "dodgerblue";
+// gridBtn.style.fontSize = "22px";
+// gridBtn.style.border = "2px solid white";
+// gridBtn.style.borderRadius = "12px";
+// gridBtn.style.color = "white";
+
+resetBtn.textContent = "Reset Grid"
 
 header.classList.add("header");
 gridBtn.classList.add("grid-button");
-footer.classList.add("footer");
+resetBtn.classList.add("reset-button");
+middle.classList.add("middle");
+btnGrp.classList.add("button-group");
 
+btnGrp.appendChild(gridBtn);
+btnGrp.appendChild(resetBtn);
 header.appendChild(title);
-header.appendChild(gridBtn);
+// header.appendChild(gridBtn);
 
 gridBtn.addEventListener("click", () => {
     defaultSize = parseInt(prompt("Enter the total squares in the grid between 1 and 64: "), 10);
@@ -35,12 +41,20 @@ gridBtn.addEventListener("click", () => {
     }
 });
 
+resetBtn.addEventListener("click", () => {
+    defaultSize = 16;
+    updateGrid(defaultSize);
+    changeColor();
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const container = createGrid(defaultSize);
+    middle.appendChild(btnGrp);
+    middle.appendChild(container);
     document.body.appendChild(header);
-    document.body.appendChild(container);
-    document.body.appendChild(footer);
+    // document.body.appendChild(container);
+    document.body.appendChild(middle);
     changeColor();
 });
 
@@ -71,10 +85,13 @@ function createGrid(defaultSize) {
 
 function updateGrid(newSize) {
     const container = document.querySelector(".container");
-    document.body.removeChild(container);
+    console.log(document.body.middle);
+    // document.body.removeChild(container);
+    middle.removeChild(container);
 
     const newContainer = createGrid(newSize);
-    document.body.appendChild(newContainer);
+    // document.body.appendChild(newContainer);
+    middle.appendChild(newContainer);
 }
 
 function findStyleRule(selector, callback) {

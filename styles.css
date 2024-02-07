@@ -18,13 +18,38 @@ body {
     gap: 80px;
 }
 
+.button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.grid-button,
+.reset-button {
+    display: flex;
+    flex-grow: 0;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: dodgerblue;
+    font-size: 20px;
+    border: 2px solid white;
+    border-radius: 12px;
+    color: white;
+}
+
+.middle {
+    display: flex;
+    gap: 80px;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
     width: 600px;
     background-color: white;
-    border: calc(8px + 0.2vw) solid gray;
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+    /* border: calc(8px + 0.2vw) solid gray; */
+    /* box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5); */
 }
 
 .squares {
