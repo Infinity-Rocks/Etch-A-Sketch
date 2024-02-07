@@ -1,7 +1,7 @@
 const header = document.createElement("div");
 const title = document.createElement("h1");
 const gridBtn = document.createElement("button");
-const footer = document.createElement("div");
+const footer = document.createElement("footer");
 
 let defaultSize = 16;
 
@@ -16,16 +16,6 @@ gridBtn.style.fontSize = "22px";
 gridBtn.style.border = "2px solid white";
 gridBtn.style.borderRadius = "12px";
 gridBtn.style.color = "white";
-
-footer.textContent = "Developed by Dhairya Jadav";
-footer.style.display = "flex";
-footer.style.justifyContent = "center";
-footer.style.alignItems = "center";
-footer.style.height = "100px";
-footer.style.width = "100%"
-footer.style.backgroundColor = "lightsteelblue";
-footer.style.fontFamily = "Georgia";
-footer.style.fontSize = "24px";
 
 header.classList.add("header");
 gridBtn.classList.add("grid-button");
