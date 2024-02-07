@@ -5,29 +5,26 @@ const middle = document.createElement("div");
 const btnGrp = document.createElement("div");
 const toggleBtn = document.createElement("button");
 const rainbowBtn = document.createElement("button");
+const eraseBtn = document.createElement("button");
 const resetBtn = document.createElement("button");
 
 let color = "";
 let defaultSize = 16;
 
-title.textContent = "This is an Etch-A-Sketch game"
+title.textContent = "Etch-A-Sketch game"
 title.style.fontFamily = "Verdana";
 
 gridBtn.textContent = "Change Grid Size";
-// gridBtn.style.backgroundColor = "dodgerblue";
-// gridBtn.style.fontSize = "22px";
-// gridBtn.style.border = "2px solid white";
-// gridBtn.style.borderRadius = "12px";
-// gridBtn.style.color = "white";
-
 toggleBtn.textContent = "Toggle Color";
 rainbowBtn.textContent = "Toggle Rainbow";
+eraseBtn.textContent = "Erase Cells";
 resetBtn.textContent = "Reset Grid";
 
 header.classList.add("header");
 gridBtn.classList.add("grid-button");
 toggleBtn.classList.add("toggle-button");
 rainbowBtn.classList.add("rainbow-button");
+eraseBtn.classList.add("erase-button");
 resetBtn.classList.add("reset-button");
 middle.classList.add("middle");
 btnGrp.classList.add("button-group");
@@ -35,6 +32,7 @@ btnGrp.classList.add("button-group");
 btnGrp.appendChild(gridBtn);
 btnGrp.appendChild(toggleBtn);
 btnGrp.appendChild(rainbowBtn);
+btnGrp.appendChild(eraseBtn);
 btnGrp.appendChild(resetBtn);
 header.appendChild(title);
 // header.appendChild(gridBtn);
@@ -59,6 +57,11 @@ rainbowBtn.addEventListener("click", () => {
     changeColor();
 });
 
+eraseBtn.addEventListener("click", () => {
+    color = "white";
+    changeColor(color);
+});
+
 resetBtn.addEventListener("click", () => {
     defaultSize = 16;
     updateGrid(defaultSize);
@@ -71,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
     middle.appendChild(btnGrp);
     middle.appendChild(container);
     document.body.appendChild(header);
-    // document.body.appendChild(container);
     document.body.appendChild(middle);
     changeColor();
 });
@@ -104,11 +106,9 @@ function createGrid(defaultSize) {
 function updateGrid(newSize) {
     const container = document.querySelector(".container");
     console.log(document.body.middle);
-    // document.body.removeChild(container);
     middle.removeChild(container);
 
     const newContainer = createGrid(newSize);
-    // document.body.appendChild(newContainer);
     middle.appendChild(newContainer);
 }
 
